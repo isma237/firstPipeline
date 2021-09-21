@@ -1,11 +1,16 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image: "node-14-alpine"
+            args : '-p 3000:3000'
+        }
+    }
 
     stages {
         stage('Deploy') {
             steps {
-                echo 'Hello World'
-                echo "C'est toujours pour ceux qui savent!"
+                echo 'Install dependencies'
+                sh 'npm install'
             }
         }
     }
