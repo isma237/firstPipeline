@@ -1,14 +1,18 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:lts-buster-slim' 
-            args '-p 3000:3000' 
+    agent { docker { image 'node:14-alpine' } }
+    stages {
+        stage('build') {
+            steps {
+                sh 'npm --version'
+            }
         }
     }
+}pipeline {
+    agent { docker { image 'node:14-alpine' } }
     stages {
-        stage('Build') { 
+        stage('build') {
             steps {
-                sh 'npm install' 
+                sh 'npm --version'
             }
         }
     }
