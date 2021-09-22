@@ -1,10 +1,15 @@
 pipeline {
-    agent { dockerfile true }
+    dockerfile {
+        filename: 'Dockerfile'
+        dir: '.'
+        label: 'my-suprem-test'
+        additionalBuildArgs : '-t simpleapp:latest'
+    }
     stages {
         stage('Test') {
             steps {
                 sh 'npm --version'
-                sh 'curl http://localhost:3000'
+                sh 'docker run -p 3000:3000 simpleapp:latest'
             }
         }
     }
