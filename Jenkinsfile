@@ -15,7 +15,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh 'echo version: ${VERSION_APP}'
+                sh 'node --version'
             }
         }
     }
