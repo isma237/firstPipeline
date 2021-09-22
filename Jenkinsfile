@@ -1,28 +1,23 @@
 pipeline {
-    agent {
-        dockerfile {
-            filename 'Dockerfile'
-            dir '.'
-            additionalBuildArgs '-t simpleapp:latest'
-        }
-    }
+    agent any
 
     environment {
         VERSION_APP = 'latest'
+        IMAGE_NAME = 'sampleapp'
         PORT = 3000
     }
 
     stages {
-        stage('Test') {
+        stage('Information') {
             steps {
-                sh 'node --version'
+                sh 'echo bonjour le monde'
             }
         }
     }
 
     post {
         always {
-            sh 'docker run -p ${PORT}:${3000} simpleapp:${VERSION_APP}'
+            sh 'echo after build'
         }
     }
 }
