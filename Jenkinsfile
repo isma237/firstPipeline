@@ -3,16 +3,26 @@ pipeline {
         dockerfile {
             filename 'Dockerfile'
             dir '.'
-            label 'my-suprem-test'
             additionalBuildArgs '-t simpleapp:latest'
         }
     }
+
+    environment {
+        VERSION_APP = 'latest'
+        PORT = 3000
+    }
+
     stages {
         stage('Test') {
             steps {
-                sh 'npm --version'
-                sh 'docker run -p 3000:3000 simpleapp:latest'
+                sh 'echo version: ${VERSION_APP}'
             }
+        }
+    }
+
+    post {
+        always {
+            sh 'docker run -p ${PORT}:${3000} simpleapp:${VERSION_APP}'
         }
     }
 }
