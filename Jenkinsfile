@@ -1,9 +1,10 @@
 pipeline {
-    agent { docker { image 'node:14-alpine' } }
+    agent { dockerfile true }
     stages {
-        stage('build') {
+        stage('Test') {
             steps {
                 sh 'npm --version'
+                sh 'curl http://localhost:3000'
             }
         }
     }
