@@ -10,14 +10,14 @@ pipeline {
     stages {
         stage('Information') {
             steps {
-                sh 'echo bonjour le monde'
+                sh 'docker build . -t ${IMAGE_NAME}:${VERSION_APP}'
             }
         }
     }
 
     post {
         always {
-            sh 'echo after build'
+            sh 'docker run -p ${PORT}:${PORT} ${IMAGE_NAME}:${VERSION_APP}'
         }
     }
 }
