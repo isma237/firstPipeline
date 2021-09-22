@@ -1,9 +1,11 @@
 pipeline {
-    dockerfile {
-        filename: 'Dockerfile'
-        dir: '.'
-        label: 'my-suprem-test'
-        additionalBuildArgs : '-t simpleapp:latest'
+    agent {
+        dockerfile {
+            filename: 'Dockerfile'
+            dir: '.'
+            label: 'my-suprem-test'
+            additionalBuildArgs : '-t simpleapp:latest'
+        }
     }
     stages {
         stage('Test') {
