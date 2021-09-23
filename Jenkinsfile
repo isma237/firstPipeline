@@ -14,10 +14,4 @@ pipeline {
             }
         }
     }
-
-    post {
-        always {
-            sh 'docker run -p ${PORT}:${PORT} ${IMAGE_NAME}:${VERSION_APP}'
-        }
-    }
 }
